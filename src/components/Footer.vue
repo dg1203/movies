@@ -4,14 +4,9 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import Search from './Search.vue';
 
-@Component({
-  components: {
-    Search,
-  },
-})
-export default class Header extends Vue {}
+@Component
+export default class Footer extends Vue {}
 </script>
 
 <style scoped>
