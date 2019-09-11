@@ -1,5 +1,6 @@
 <template>
   <div class="slides">
+    <h1>Popularne filmy</h1>
     <transition name="fade">
       <div v-if="incrementer === 1" :style="{backgroundImage: `url(${slide1})`}" class="slide"></div>
     </transition>
@@ -60,5 +61,15 @@ export default class Slider extends Vue {
   }
   .fade-enter, .fade-leave-to {
     opacity: 0;
+  }
+  h1 {
+    position: absolute;
+    z-index: 1;
+    bottom: 50px;
+    left: 10%;
+    color: #e1b12c;
+    font-size: 3rem;
+    background-color: rgba(0, 0, 0, .8);
+    padding: 15px;
   }
 </style>

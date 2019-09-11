@@ -4,7 +4,10 @@
     <div class="container">
       <MovieThumbnail v-for="(item, index) in data" :key="index" :movie="item" />
     </div>
-    <div v-if="loading">Loading...</div>
+    <button @click="readMore">
+      Więcej
+      <font-awesome-icon title="Więcej" icon="plus"/>
+    </button>
   </div>
 </template>
 
@@ -18,14 +21,17 @@ import MovieThumbnail from '../components/MovieThumbnail.vue';
 @Component({
   components: {
     Slider,
-    MovieThumbnail
+    MovieThumbnail,
   },
 })
 export default class Home extends Vue {
-  private loading: boolean =  movies.getLoading;
   private data: Movie[] = movies.moviesList;
   private created(): void {
-    movies.fetchMovies(1);
+    movies.fetchMovies();
+  }
+  private readMore() {
+    movies.incrementPage();
+    setTimeout(() => movies.fetchMovies(), 500);
   }
 }
 </script>
@@ -39,5 +45,26 @@ export default class Home extends Vue {
     max-width: 1200px;
     margin-left: auto;
     margin-right: auto;
+  }
+  button  {
+    height: 40px;
+    width: 300px;
+    color: black;
+    text-transform: uppercase;
+    font-weight: bold;
+    background: #e1b12c;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    margin-bottom: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    transition: .1s;
+    font-size: 1rem;
+    &:hover {
+      background: black;
+      color: #e1b12c;
+    }
   }
 </style>

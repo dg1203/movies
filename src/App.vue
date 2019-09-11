@@ -22,6 +22,7 @@ export default class App extends Vue {}
 
 <style lamg="scss">
   body {
+    font-family: 'Manjari', sans-serif;
     margin: 0px;
   }
 </style>
