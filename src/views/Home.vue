@@ -27,7 +27,9 @@ import MovieThumbnail from '../components/MovieThumbnail.vue';
 export default class Home extends Vue {
   private data: Movie[] = movies.moviesList;
   private created(): void {
-    movies.fetchMovies();
+    if (movies.moviesList.length === 0) {
+      movies.fetchMovies();
+    }
   }
   private readMore() {
     movies.incrementPage();
@@ -36,7 +38,7 @@ export default class Home extends Vue {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   .container {
     display: flex;
     justify-content: space-around;

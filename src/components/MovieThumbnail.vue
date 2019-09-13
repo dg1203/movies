@@ -1,10 +1,10 @@
 <template>
-  <div class="movie" :style="{backgroundImage: `url(https://image.tmdb.org/t/p/w500/${movie.poster_path})`}">
+  <router-link :to="{ name: 'movie', params: {id: movie.id } }" class="movie" :style="{backgroundImage: `url(https://image.tmdb.org/t/p/w500/${movie.poster_path})`}">
     <div class="bg" :style="{backgroundImage: `url(https://image.tmdb.org/t/p/w500/${movie.backdrop_path})`}"></div>
     <div class="movie__title">
       {{movie.title}}
     </div>
-  </div>
+  </router-link>
 </template>
 
 <script lang="ts">
@@ -27,6 +27,8 @@ export default class MovieThumbnail extends Vue {
     background-position: center;
     position: relative;
     overflow: hidden;
+    text-decoration: none;
+    outline: none;
     cursor: pointer;
     box-shadow: 0px 0px 2px 0px;
     transition: 1s;
@@ -59,7 +61,7 @@ export default class MovieThumbnail extends Vue {
       transition: 1s;
     }
     &:hover {
-      box-shadow: 0px 0px 10px 0px;
+      box-shadow: 0px 0px 10px 0px black;
       .bg {
         opacity: 1;
       }

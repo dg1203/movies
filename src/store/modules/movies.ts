@@ -1,6 +1,7 @@
 import { VuexModule, Module, getModule, Mutation, Action } from 'vuex-module-decorators';
 import axios from 'axios';
 import store from '../index';
+import { getMovies } from '../../services/movie';
 import { Movie } from '../models';
 
 @Module({
@@ -24,8 +25,8 @@ class MoviesModule extends VuexModule {
   }
 
   @Action({commit: 'addMovies'})
-  public async fetchMovies() {
-    const response = await axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=95f0473db1c299ac66b0270406bf56d7&page=${this.page}`);
+  public async  fetchMovies() {
+    const response: any = await getMovies(this.page);
     const { results } = response.data;
     const movies = results.map((movie: any) => {
       return {
