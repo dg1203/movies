@@ -6,12 +6,12 @@ describe('MovieThumbnail', () => {
     propsData: {
       movie: {
         id: 0,
-        backdrop_path: "#",
-        poster_path: "#",
-        title: "MovieTitle",
-        overview: "MovieDescription"
-      }
-    }
+        backdrop_path: '#',
+        poster_path: '#',
+        title: 'MovieTitle',
+        overview: 'MovieDescription',
+      },
+    },
   });
   it('Should has div class movie and style background should be prop movie.poster_path', () => {
     expect(wrapper.find('.movie').exists()).toBe(true);

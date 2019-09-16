@@ -3,10 +3,10 @@ import App from './App.vue';
 import router from './router';
 import store from './store/index';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faUserSecret, faSearchPlus, faSearchMinus, faPlay, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faUserSecret, faSearchPlus, faSearchMinus, faPlay, faPlus, faCaretDown, faCaretUp } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
-library.add(faUserSecret, faSearchPlus, faSearchMinus, faPlay, faPlus);
+library.add(faUserSecret, faSearchPlus, faSearchMinus, faPlay, faPlus, faCaretDown, faCaretUp);
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 
 Vue.config.productionTip = false;

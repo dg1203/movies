@@ -13,6 +13,7 @@ import { Movie } from '../models';
 class MoviesModule extends VuexModule {
   private movies: Movie[] = [];
   private page: number = 1;
+  private sortBy: string = 'popular';
 
   @Action({commit: 'changeLoading'})
   public setLoading(loading: boolean) {
@@ -24,9 +25,35 @@ class MoviesModule extends VuexModule {
     return this.page + 1;
   }
 
+  @Action({commit: 'changePage'})
+  public resetPage(): number {
+    return 1;
+  }
+
+  @Action({commit: 'changeSort'})
+  public sortByChange(sortBy: string): string {
+    return sortBy;
+  }
+
   @Action({commit: 'addMovies'})
   public async  fetchMovies() {
-    const response: any = await getMovies(this.page);
+    const response: any = await getMovies(this.page, this.sortBy);
+    const { results } = response.data;
+    const movies = results.map((movie: any) => {
+      return {
+        id: movie.id,
+        backdrop_path: movie.backdrop_path,
+        poster_path: movie.poster_path,
+        title: movie.title,
+        overview: movie.overview,
+      };
+    });
+    return movies;
+  }
+
+  @Action({commit: 'sortMovies'})
+  public async changeSortMovies() {
+    const response: any = await getMovies(this.page, this.sortBy);
     const { results } = response.data;
     const movies = results.map((movie: any) => {
       return {
@@ -46,12 +73,27 @@ class MoviesModule extends VuexModule {
   }
 
   @Mutation
+  private sortMovies(movies: Movie[]) {
+    this.movies.splice(0, this.movies.length);
+    this.movies.push(...movies);
+  }
+
+  @Mutation
   private changePage(page: number) {
     this.page = page;
   }
 
+  @Mutation
+  private changeSort(sortBy: string) {
+    this.sortBy = sortBy;
+  }
+
   get moviesList(): Movie[] {
     return this.movies;
+  }
+
+  get getSortBy() {
+    return this.sortBy;
   }
 }
 

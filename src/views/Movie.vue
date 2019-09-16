@@ -38,9 +38,9 @@ export default class Movie extends Vue {
   }
   private async getMovieById() {
     try {
-      const movie: any = await getMovie(parseInt(this.$route.params.id));
+      const movie: any = await getMovie(parseInt(this.$route.params.id, 10));
       this.movie = movie.data;
-    } catch(error) {
+    } catch (error) {
       this.movie = null;
     }
   }
