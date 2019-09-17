@@ -1,20 +1,14 @@
 <template>
   <div class="home">
-    <Slider title="Filmy" />
-    <div class="container">
-      <MovieThumbnail v-for="(item, index) in data" :key="index" :movie="item" />
-    </div>
-    <button @click="readMore">
-      Więcej
-      <font-awesome-icon title="Więcej" icon="plus"/>
-    </button>
+    <Slider title="Ludzie kina" />
+    <h1>People</h1>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import movies from '../store/modules/movies';
-import { Movie } from '../store/models';
+import people from '../store/modules/people';
+import { People } from '../store/models';
 import Slider from '../components/Slider.vue';
 import MovieThumbnail from '../components/MovieThumbnail.vue';
 
@@ -24,17 +18,17 @@ import MovieThumbnail from '../components/MovieThumbnail.vue';
     MovieThumbnail,
   },
 })
-export default class Home extends Vue {
-  private data: Movie[] = movies.moviesList;
+export default class PeoplePage extends Vue {
+  private data: People[] = people.peopleList;
   private created(): void {
-    if (movies.moviesList.length === 0) {
-      movies.fetchMovies();
+    if (people.peopleList.length === 0) {
+      people.fetchPeople();
     }
   }
-  private readMore() {
-    movies.incrementPage();
-    setTimeout(() => movies.fetchMovies(), 500);
-  }
+  /* private readMore() {
+    people.incrementPage();
+    setTimeout(() => people.fetchMovies(), 500);
+  } */
 }
 </script>
 

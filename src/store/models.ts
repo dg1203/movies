@@ -5,3 +5,9 @@ export interface Movie {
   title: string;
   overview: string;
 }
+
+export interface People {
+  id: number;
+  name: string;
+  profile_path: string;
+}

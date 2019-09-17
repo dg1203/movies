@@ -1,5 +1,4 @@
 import { VuexModule, Module, getModule, Mutation, Action } from 'vuex-module-decorators';
-import axios from 'axios';
 import store from '../index';
 import { getMovies } from '../../services/movie';
 import { Movie } from '../models';

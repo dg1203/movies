@@ -1,6 +1,6 @@
 <template>
   <div class="slides">
-    <h1>Popularne filmy</h1>
+    <h1>{{title}}</h1>
     <Sort />
     <transition name="fade">
       <div v-if="incrementer === 1" :style="{backgroundImage: `url(${slide1})`}" class="slide"></div>
@@ -15,7 +15,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import { Component, Vue, Prop } from 'vue-property-decorator';
 import Sort from './Sort.vue';
 import slide1 from '../assets/images/slide1.jpg';
 import slide2 from '../assets/images/slide2.jpg';
@@ -27,6 +27,7 @@ import slide3 from '../assets/images/slide3.jpg';
   },
 })
 export default class Slider extends Vue {
+  @Prop() private title!: string;
   private slide1: any;
   private slide2: any;
   private slide3: any;

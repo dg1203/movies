@@ -18,5 +18,10 @@ export default new Router({
       name: 'movie',
       component: () => import('./views/Movie.vue'),
     },
+    {
+      path: '/people',
+      name: 'people',
+      component: () => import('./views/PeoplePage.vue'),
+    },
   ],
 });

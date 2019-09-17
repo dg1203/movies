@@ -20,7 +20,17 @@ const getMovie = (id: number) => {
   }
 };
 
+const getCredits = (id: number) => {
+  try {
+    const response = axios.get(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=${apiKey}`);
+    return response;
+  } catch (error) {
+    return null;
+  }
+}
+
 export {
   getMovies,
   getMovie,
+  getCredits,
 };
