@@ -12,6 +12,7 @@ describe('MovieThumbnail', () => {
         overview: 'MovieDescription',
       },
     },
+    stubs: ['router-link'],
   });
   it('Should has div class movie and style background should be prop movie.poster_path', () => {
     expect(wrapper.find('.movie').exists()).toBe(true);
