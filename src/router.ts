@@ -23,5 +23,10 @@ export default new Router({
       name: 'people',
       component: () => import('./views/PeoplePage.vue'),
     },
+    {
+      path: '/person/:id',
+      name: 'person',
+      component: () => import('./views/Person.vue'),
+    },
   ],
 });

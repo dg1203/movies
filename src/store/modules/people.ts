@@ -14,6 +14,11 @@ class PeopleModule extends VuexModule {
   private page: number = 1;
   private sortBy: string = 'popular';
 
+  @Action({commit: 'changePage'})
+  public incrementPage(): number {
+    return this.page + 1;
+  }
+
   @Action({commit: 'addPeople'})
   public async  fetchPeople() {
     const response: any = await getPeople(this.page, this.sortBy);
@@ -21,8 +26,9 @@ class PeopleModule extends VuexModule {
     const people = results.map((person: any) => {
       return {
         id: person.id,
-        backdrop_path: person.backdrop_path,
-        poster_path: person.poster_path,
+        name: person.name,
+        profile_path: person.profile_path,
+        known_for_department: person.known_for_department,
       };
     });
     return people;
@@ -31,6 +37,11 @@ class PeopleModule extends VuexModule {
   @Mutation
   private addPeople(people: People[]) {
     this.people.push(...people);
+  }
+
+  @Mutation
+  private changePage(page: number) {
+    this.page = page;
   }
 
   get peopleList(): People[] {

@@ -27,14 +27,14 @@
       <div class="credits__list">
         <div v-for="(person, index) in credits.cast" :key="index" class="person">
           <div class="person__image" :style="{backgroundImage: `url(https://image.tmdb.org/t/p/w500/${person.profile_path})`}"></div>
-          <div class="person__name">{{person.name}}</div>
+          <router-link :to="{ name: 'person', params: {id: person.id } }" class="person__name">{{person.name}}</router-link>
           <div class="person__role">as {{person.character}}</div>
         </div>
       </div>
       <div class="credits__list">
         <div v-for="(person, index) in credits.crew" :key="index" class="person">
           <div class="person__image" :style="{backgroundImage: `url(https://image.tmdb.org/t/p/w500/${person.profile_path})`}"></div>
-          <div class="person__name">{{person.name}}</div>
+          <router-link :to="{ name: 'person', params: {id: person.id } }" class="person__name">{{person.name}}</router-link>
           <div class="person__role">({{person.job}})</div>
         </div>
       </div>

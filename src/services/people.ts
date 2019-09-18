@@ -11,16 +11,26 @@ const getPeople = (page: number, sortBy: string) => {
   }
 };
 
-/* const getMovie = (id: number) => {
+const getPerson = (id: number) => {
   try {
-    const response = axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}`);
+    const response = axios.get(`https://api.themoviedb.org/3/person/${id}?api_key=${apiKey}`);
     return response;
   } catch (error) {
     return null;
   }
-}; */
+};
+
+const getCredits = (id: number) => {
+  try {
+    const response = axios.get(`https://api.themoviedb.org/3/person/${id}/movie_credits?api_key=${apiKey}&language=en-US`);
+    return response;
+  } catch (error) {
+    return null;
+  }
+}
 
 export {
   getPeople,
-  // getMovie,
+  getPerson,
+  getCredits,
 };

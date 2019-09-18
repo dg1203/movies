@@ -1,7 +1,16 @@
 <template>
   <div class="home">
     <Slider title="Ludzie kina" />
-    <h1>People</h1>
+    <div v-if="data.length > 0" class="people_container">
+      <router-link v-for="(item, index) in data" :to="{ name: 'person', params: {id: item.id } }" :key="index" class="person">
+        <div class="person__image" :style="{backgroundImage: `url(https://image.tmdb.org/t/p/w500/${item.profile_path})`}"></div>
+        {{item.name}} ({{item.known_for_department}})
+      </router-link>
+    </div>
+    <button @click="readMore">
+      Więcej
+      <font-awesome-icon title="Więcej" icon="plus"/>
+    </button>
   </div>
 </template>
 
@@ -25,15 +34,15 @@ export default class PeoplePage extends Vue {
       people.fetchPeople();
     }
   }
-  /* private readMore() {
+  private readMore() {
     people.incrementPage();
-    setTimeout(() => people.fetchMovies(), 500);
-  } */
+    setTimeout(() => people.fetchPeople(), 500);
+  }
 }
 </script>
 
 <style lang="scss" scoped>
-  .container {
+  .people_container {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
@@ -41,6 +50,30 @@ export default class PeoplePage extends Vue {
     max-width: 1200px;
     margin-left: auto;
     margin-right: auto;
+    justify-content: space-between;
+    .person {
+      width: 49%;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      font-size: 1.5rem;
+      box-shadow: 0px 0px 2px 0px;
+      transition: 1s;
+      cursor: pointer;
+      text-decoration: none;
+      color: black;
+      &__image {
+        width: 100px;
+        height: 100px;
+        background-size: cover;
+        background-position: center;
+        margin-right: 15px;
+        transition: 1s;
+      }
+      &:hover {
+        box-shadow: 0px 0px 10px 0px black;
+      }
+    }
   }
   button  {
     height: 40px;
