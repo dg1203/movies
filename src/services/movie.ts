@@ -29,8 +29,18 @@ const getCredits = (id: number) => {
   }
 }
 
+const findMovie = (key: string) => {
+  try {
+    const response = axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=en-US&sort_by=popularity.desc&query=${key}`);
+    return response;
+  } catch (error) {
+    return null;
+  }
+}
+
 export {
   getMovies,
   getMovie,
   getCredits,
+  findMovie,
 };

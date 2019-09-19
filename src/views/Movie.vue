@@ -45,7 +45,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import { Component, Vue, Watch } from 'vue-property-decorator';
 import { getMovie, getCredits } from '../services/movie';
 
 @Component
@@ -54,6 +54,10 @@ export default class Movie extends Vue {
   private credits: any = null;
   private loading: boolean = false;
   private created(): void {
+    this.getMovieById();
+  }
+  @Watch('$route.params.id')
+  changeMovie() {
     this.getMovieById();
   }
   private async getMovieById() {
