@@ -5,6 +5,12 @@ describe('Search', () => {
   const wrapper = shallowMount(Search, {
     stubs: ['font-awesome-icon'],
   });
+  wrapper.setData({
+    show: false,
+    results: [],
+    searchKey: '',
+    loading: false,
+  });
   it('Should has div class search', () => {
     expect(wrapper.find('.search').exists()).toBe(true);
   });
@@ -23,5 +29,20 @@ describe('Search', () => {
     setTimeout(() => {
       expect(wrapper.find('form').exists()).toBe(false);
     }, 1000);
+  });
+  it('Change search key', () => {
+    wrapper.setData({
+      show: true,
+    });
+    setTimeout(() => {
+      expect(wrapper.vm.$data.searchKey).toBe('');
+      wrapper.find('form .search__input').setValue('Search key');
+      expect(wrapper.vm.$data.searchKey).toBe('Search key');
+      }, 1000);
+    });
+  it('Result list', async () => {
+    expect(wrapper.find('.results').exists()).toBe(false);
+    wrapper.find('form').trigger('submit.prevent');
+    setTimeout(() => expect(wrapper.find('.results').exists()).toBe(true), 1000);
   });
 });

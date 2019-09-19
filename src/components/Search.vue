@@ -30,7 +30,6 @@ import { findMovie } from '../services/movie';
 export default class Search extends Vue {
   private show: boolean = false;
   private searchKey: string = '';
-  private timer: any = null;
   private results: any = [];
   private loading: boolean = false;
   private showField(): void {
